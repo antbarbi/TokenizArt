@@ -14,7 +14,7 @@ contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
     struct Metadata {
         string name;
         string description;
-        string image;  // Base64-encoded image or SVG
+        string image;
     }
 
     // Mapping to store metadata per token ID
@@ -63,6 +63,12 @@ contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
             '{"name":"', meta.name, '","description":"', meta.description, '","image":"', meta.image, '"}'
         ));
         return string(abi.encodePacked("data:application/json;base64,", base64Encode(bytes(json))));
+    }
+
+    // Function to return only the image data for a token
+    function getImage(uint256 tokenId) public view returns (string memory) {
+        require(_ownerOf(tokenId) != address(0), "Token does not exist");
+        return _tokenMetadata[tokenId].image;
     }
 
     // Override to support interface detection
