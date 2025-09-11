@@ -24,6 +24,15 @@ contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
 
     // Function to mint new NFTs with on-chain metadata, restricted to the owner
     function mintNFT(address to, string memory name, string memory description, string memory image) public onlyOwner {
+        // Validate that image is a base64 data URI (e.g., "data:image/png;base64,...") for on-chain storage
+        bytes memory imgBytes = bytes(image);
+        require(imgBytes.length > 11, "Image data too short");
+        require(
+            imgBytes[0] == 'd' && imgBytes[1] == 'a' && imgBytes[2] == 't' && imgBytes[3] == 'a' &&
+            imgBytes[4] == ':' && imgBytes[5] == 'i' && imgBytes[6] == 'm' && imgBytes[7] == 'a' &&
+            imgBytes[8] == 'g' && imgBytes[9] == 'e' && imgBytes[10] == '/',
+            "Image must be a base64 data URI (start with 'data:image/')"
+        );
         uint256 tokenId = _tokenIdCounter;
         _tokenIdCounter++;
         _mint(to, tokenId);
