@@ -112,6 +112,25 @@ function App() {
     try {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const provider = new ethers.BrowserProvider(window.ethereum);
+      const network = await provider.getNetwork();
+      if (network.chainId !== 11155111n) {
+        try {
+          await provider.send('wallet_switchEthereumChain', [{ chainId: '0xaa36a7' }]);
+        } catch (switchError) {
+          if (switchError.code === 4902) {
+            // Network not added, add Sepolia
+            await provider.send('wallet_addEthereumChain', [{
+              chainId: '0xaa36a7',
+              chainName: 'Sepolia',
+              nativeCurrency: { name: 'SepoliaETH', symbol: 'ETH', decimals: 18 },
+              rpcUrls: ['https://sepolia.infura.io/v3/'],
+              blockExplorerUrls: ['https://sepolia.etherscan.io/']
+            }]);
+          } else {
+            throw switchError;
+          }
+        }
+      }
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(contractAddress, CONTRACT_ABI, signer);
       const address = await signer.getAddress();
@@ -149,7 +168,7 @@ function App() {
       <div className="flex justify-between items-center mb-4">
         <div></div>
         <h2 className='font-bold'>Connected to contract: {inputAddress}</h2>
-        <button onClick={clearStorage} className="logout-btn">Log out</button>
+        <button onClick={clearStorage} className="logout-btn">Swap contract</button>
       </div>
       <div className='pt-[20vh]'/>
       <div className="max-w-md mx-auto">
@@ -174,10 +193,12 @@ function App() {
         </div>
       </div>
       {preview && (
-        <div style={{ marginTop: 12 }}>
-          <img src={preview} alt="preview" style={{ maxWidth: 240, maxHeight: 240, display: 'block' }} />
-          <div>Base64 length: {fileB64.length} chars</div>
-        </div>
+        <>
+          <div className="flex justify-center mt-4">
+            <img src={preview} alt="preview" className="max-w-60 max-h-60 border rounded" />
+          </div>
+          <div className="text-center mt-2 text-sm text-gray-600">Base64 length: {fileB64.length} chars</div>
+        </>
       )}
 
       <div style={{ marginTop: 12 }}>
