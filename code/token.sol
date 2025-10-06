@@ -48,6 +48,10 @@ contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
         return _baseTokenURI;
     }
 
+    function healthCheck() public pure returns (bool) {
+        return true;
+    }
+
     function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
         require(_ownerOf(tokenId) != address(0), "Token does not exist");
         Metadata memory meta = _tokenMetadata[tokenId];
