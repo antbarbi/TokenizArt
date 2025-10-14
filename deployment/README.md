@@ -42,3 +42,11 @@ Example metadata:
 - nft.storage: https://nft.storage/
 - IPFS: https://ipfs.io/
 - Etherscan: https://etherscan.io/
+
+## Ressources
+
+ - [NFT metadata](bafkreich7tg7nywdor7iyrs4gsgvsfx6vpfidwduqzfiwrr6ktldozlzcy)
+ - [tiny nug2](https://violet-peaceful-worm-927.mypinata.cloud/ipfs/bafkreicyvboy2rmy24x56bf7gvlnda4royiqw42mirgi25bbjbwokms4qe)
+ - [tiny nug1](https://violet-peaceful-worm-927.mypinata.cloud/ipfs/bafkreifg3p463d3yax4lmffkhkomp2wjq4fxqq62wfsmpmef55tzhohy5e)
+ - [nug2](https://violet-peaceful-worm-927.mypinata.cloud/ipfs/bafybeic4hvotlbvt5jveb6cgivrfhxxkamahqii3hy5fli5bl6kwy4hjv4)
+ - [nug1](https://violet-peaceful-worm-927.mypinata.cloud/ipfs/bafybeihhrt5yqzjaw2sun7laq2lgmkmmafmsvkgt6qevxmpeioesp6252a)
