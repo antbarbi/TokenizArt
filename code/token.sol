@@ -48,22 +48,15 @@ contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
         _tokenMetadata[tokenId] = Metadata(name, description, image);
     }
 
-    function mintNFT_IPS(
-        address to,
-        string memory name,
-        string memory description,
-        string memory image
-    ) public onlyOwner {
-        bytes memory imgBytes = bytes(image);
-        require(imgBytes.length > 7, "Image data too short");
+    function mintNFT_IPS(address to, string memory metadataURI) public onlyOwner {
         require(
-            startsWith(image, "data:image/") || startsWith(image, "ipfs://"),
-            "Image must start with 'data:image/' or 'ipfs://'"
+            startsWith(metadataURI, "ipfs://") || startsWith(metadataURI, "https://"),
+            "URI must be IPFS or HTTPS"
         );
-        uint256 tokenId = _tokenIdCounter;
-        _tokenIdCounter++;
+
+        uint256 tokenId = _tokenIdCounter++;
         _mint(to, tokenId);
-        _tokenMetadata[tokenId] = Metadata(name, description, image);
+        _setTokenURI(tokenId, metadataURI);
     }
 
     // Helper function moved outside
