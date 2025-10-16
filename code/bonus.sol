@@ -44,8 +44,7 @@ contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
                 imgBytes[10] == "/",
             "Image must be a base64 data URI (start with 'data:image/')"
         );
-        
-        // Validate artist name contains "42"
+
         bytes memory artistBytes = bytes(artist);
         if (artistBytes.length > 0) {
             require(contains42(artist), "Artist name must contain '42'");
@@ -131,7 +130,6 @@ contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
         return _tokenMetadata[tokenId].image;
     }
 
-    // Debug function to get raw metadata
     function getMetadata(uint256 tokenId) public view returns (string memory name, string memory description, string memory image, string memory artist) {
         require(_ownerOf(tokenId) != address(0), "Token does not exist");
         Metadata memory meta = _tokenMetadata[tokenId];

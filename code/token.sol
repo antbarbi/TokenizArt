@@ -6,7 +6,6 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-// Simple NFT contract with minting, burning, and base URI capabilities
 contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
     uint256 private _tokenIdCounter;
     string private _baseTokenURI;
@@ -26,8 +25,7 @@ contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
         uint256 tokenId = _tokenIdCounter;
         _tokenIdCounter++;
         _mint(to, tokenId);
-        
-        // Generate metadata JSON
+
         string memory json = string(
             abi.encodePacked(
                 '{"name":"',
@@ -41,8 +39,7 @@ contract SimpleNFT is ERC721, ERC721URIStorage, Ownable {
                 '"}'
             )
         );
-        
-        // Create data URI with base64 encoded JSON
+
         string memory metadataURI = string(
             abi.encodePacked(
                 "data:application/json;base64,",
