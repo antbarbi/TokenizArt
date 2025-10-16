@@ -11,9 +11,9 @@ export const checkContractHealth = async (address) => {
   return await contract.healthCheck();
 };
 
-export const mintNFT = async (contractAddress, signer, to, name, description, image) => {
+export const mintNFT = async (contractAddress, signer, to, name, description, image, artist = "") => {
   const contract = new ethers.Contract(contractAddress, CONTRACT_ABI, signer);
-  const tx = await contract.mintNFT(to, name, description, image);
+  const tx = await contract.mintNFT(to, name, description, image, artist);
   await tx.wait();
   return tx.hash;
 };

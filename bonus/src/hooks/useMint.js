@@ -5,10 +5,14 @@ import { mintNFT } from '../api/contractApi.js';
 export const useMint = (contractAddress) => {
   const [status, setStatus] = useState('');
 
-  const callContractWithBase64 = async (fileB64) => {
+  const callContractWithBase64 = async (fileB64, name = "My NFT", description = "Uploaded image", artist = "") => {
     setStatus('');
     if (!fileB64) {
       setStatus('No file selected');
+      return;
+    }
+    if (!name.trim()) {
+      setStatus('NFT name is required');
       return;
     }
     if (!window.ethereum) {
@@ -39,7 +43,8 @@ export const useMint = (contractAddress) => {
       const signer = await provider.getSigner();
       const address = await signer.getAddress();
       setStatus('Transaction sent, waiting for confirmation...');
-      const txHash = await mintNFT(contractAddress, signer, address, "My NFT", "Uploaded image", fileB64);
+      
+      const txHash = await mintNFT(contractAddress, signer, address, name, description, fileB64, artist);
       setStatus('Transaction confirmed: ' + txHash);
     } catch (err) {
       console.error(err);

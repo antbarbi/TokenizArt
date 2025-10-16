@@ -6,7 +6,8 @@ const CONTRACT_ABI = [
       {"name": "to", "type": "address"},
       {"name": "name", "type": "string"},
       {"name": "description", "type": "string"},
-      {"name": "image", "type": "string"}
+      {"name": "image", "type": "string"},
+      {"name": "artist", "type": "string"}
     ],
     "name": "mintNFT",
     "outputs": [],
