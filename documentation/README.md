@@ -82,19 +82,6 @@ Host a JSON file on IPFS with fields like:
 
 Then pass the IPFS URL as the `tokenURI` when minting.
 
-## Deployment Best Practices
-
-- Test thoroughly on Sepolia or Goerli before mainnet deployment.
-- Use OpenZeppelin contracts to avoid common pitfalls.
-- Avoid storing large data on-chain; use off-chain storage (IPFS) for images and metadata.
-- Consider gas optimizations and upgradeable patterns only if needed.
-
-## Troubleshooting
-
-- CORS when calling public RPC endpoints: use a provider that supports CORS (Alchemy/Infura) or run a backend proxy.
-- If `mint` reverts: check `require` conditions, gas limits, and the owner/role permissions.
-- Metadata not showing on marketplaces: ensure metadata JSON and image are pinned and accessible via IPFS gateway or HTTPS.
-
 ## Useful Links
 
 - Remix: https://remix.ethereum.org/
@@ -102,7 +89,3 @@ Then pass the IPFS URL as the `tokenURI` when minting.
 - ethers.js: https://docs.ethers.org/
 - IPFS: https://ipfs.io/
 - Etherscan: https://etherscan.io/ (switch network as needed)
-
----
-
-This documentation is focused on Ethereum + Remix workflows for NFT (ERC-721) projects. Adjust contract examples and deployment steps to match your specific use case.

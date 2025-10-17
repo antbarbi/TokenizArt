@@ -24,7 +24,7 @@
 }
 
 .submit-btn {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -42,7 +42,7 @@
 }
 
 .logout-btn {
-  background-color: #f44336; /* Red */
+  background-color: #f44336;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -60,7 +60,7 @@
 }
 
 .send-btn {
-  background-color: #2196F3; /* Blue */
+  background-color: #2196F3;
   color: white;
   border: none;
   padding: 10px 20px;
